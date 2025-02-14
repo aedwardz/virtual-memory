@@ -4,7 +4,6 @@ class PhysicalMemory:
         self.fillMemory(input)
     def __getitem__(self, item):
         return self.PM[item]
-
     def fillMemory(self, input):
 
         with open(input, 'r') as file:
@@ -27,6 +26,3 @@ class PhysicalMemory:
                 f = int(line2[i])
 
                 self.PM[self.PM[2*s+1] * 512 + p] = f
-
-            #
-            #
