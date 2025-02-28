@@ -87,6 +87,8 @@ class VirtualMemory:
         pt = self.PM[2*s + 1]
 
         if pt >= 0:
+            if pt == 0:
+                print('pt-0')
             pg = self.PM[512 * pt + p]
         else:
             block = abs(pt)

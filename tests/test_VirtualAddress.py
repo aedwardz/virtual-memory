@@ -28,6 +28,40 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(va['p'], 5)
         self.assertEqual(va['w'], 439)
         self.assertEqual(va['pw'], 2999)
+    def testVirtualAddress4(self):
+        va = VirtualAddress(2097162)
+
+        self.assertEqual(va['va'], int(bin(2097162), 2))
+        self.assertEqual(va['s'], 8)
+        self.assertEqual(va['p'], 0)
+        self.assertEqual(va['w'], 10)
+
+    def testVirtualAddress5(self):
+        va = VirtualAddress(2097674)
+
+
+        self.assertEqual(va['s'], 8)
+        self.assertEqual(va['p'], 1)
+        self.assertEqual(va['w'], 10)
+
+    def testVirtualAddress6(self):
+        va = VirtualAddress(2359306)
+
+
+        self.assertEqual(va['s'], 9)
+        self.assertEqual(va['p'], 0)
+        self.assertEqual(va['w'], 10)
+
+    def testh(self):
+        va = VirtualAddress(24)
+
+        print()
+        print(va['s'])
+        print(va['p'])
+        print(va['w'])
+        print(va['pw'])
+
+
 
 
 

@@ -3,16 +3,7 @@ from VirtualMemory import VirtualMemory
 
 
 class MyTestCase(unittest.TestCase):
-    def testFinalTranslation(self):
-        expected = [5130, 1034, 6666, 2570]
-        inputs = [2097162, 2097674, 2359306, 2359818]
-        result = []
-        vm = VirtualMemory(1024, '../testInit.txt')
 
-        for inp in inputs:
-            result.append(vm.translate(inp))
-
-        self.assertEquals(result, expected)
     def testFillMemory(self):
         vm = VirtualMemory(1024, '../testInit.txt')
 
@@ -38,6 +29,10 @@ class MyTestCase(unittest.TestCase):
         va = 1575864
         with self.assertRaises(Exception):
             vm.translate(va)
+    def testLargePw2(self):
+        vm = VirtualMemory(1024, '../files/init-no-dp.txt')
+        va = 524287
+        vm.translate(va)
 
     def testTranslateDefault(self):
         vm = VirtualMemory(1024, '../testInit.txt')
@@ -75,6 +70,17 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEquals(result, 7178)
 
+    def testFinalTranslation(self):
+        expected = [5130, 1034, 6666, 2570]
+        inputs = [2097162, 2097674, 2359306, 2359818]
+        result = []
+        vm = VirtualMemory(1024, '../testInit.txt')
+
+        for inp in inputs:
+            result.append(vm.translate(inp))
+
+        self.assertEquals(result, expected)
+
 
 
     def setUp(self):
@@ -89,6 +95,7 @@ class MyTestCase(unittest.TestCase):
             k += 1
 
         self.vm.writeBlock(b, m)
+
 
         self.assertEqual(self.vm.disk[b], [1]* 512)
 
@@ -108,6 +115,18 @@ class MyTestCase(unittest.TestCase):
         self.vm.disk[b] = [7] * 512
         self.vm.readBlock(b, m)
         self.assertEqual(self.vm.PM[m: m + len(self.vm.disk[b])], self.vm.disk[b])
+
+    def testKc(self):
+        vm = VirtualMemory(1024,"C:\\Users\\Antonio\\virtualMemory\\kc.txt")
+        try:
+            print(vm.translate(24))
+            print(vm.translate(512))
+
+        except:
+            print('error')
+
+        print(vm.translate(2098193))
+
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 class VirtualAddress:
     MASK = 0x1FF
-    MASK2 = 0x3FFF
+    MASK2 = 0x3FFFF
     def __init__(self, VA):
         self.intAddress = VA
         self.VA = {
@@ -17,6 +17,6 @@ class VirtualAddress:
         self.VA['s'] = self['va'] >> 18
         self.VA['p'] = (self['va'] >> 9) & self.MASK
         self.VA['w'] = self['va'] & self.MASK
-        self.VA['pw'] = self['va'] & self.MASK2
+        self.VA['pw'] = self.intAddress & self.MASK2
 
 
